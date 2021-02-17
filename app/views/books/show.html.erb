@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 70px">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'layouts/sidebar', user: @user, book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+
+    <div class="col-md-3">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tr>
+          <td>
+
+            <%= link_to user_path(@new_book.user.id) do %>
+
+              <br>
+              <%= @new_book.user.name %>
+            <% end %>
+          </td>
+
+
+          <td><%= @new_book.title %></td>
+          <td><%= @new_book.body %></td>
+          <% if @new_book.user.id == current_user.id %>
+          <td><%= link_to "Edit", edit_book_path(@new_book.id), class:'btn btn-sm btn-success' %></td>
+          <td><%= link_to 'Destroy', book_path(@new_book.id), method: :delete, class:'btn btn-danger btn-sm' %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+<div>
+</div>
